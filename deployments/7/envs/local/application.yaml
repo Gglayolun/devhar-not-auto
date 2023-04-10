@@ -1,0 +1,60 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  annotations:
+    application.deploy.reform/app: dev-1
+    application.deploy.reform/cluster: local
+    application.deploy.reform/commitHash: 7a07540808fe93e5419b7eae6c8ed373d6a6c1db
+    application.deploy.reform/deploymentNo: wizard-harris-02-local_DP1
+    application.deploy.reform/environment: local
+    application.deploy.reform/name: wizard-harris-02
+    application.deploy.reform/repository: https://github.com/Gglayolun/devhar-not-auto.git
+    application.deploy.reform/repositoryPath: "7"
+    application.deploy.reform/revision: 2023.04.1
+    application.deploy.reform/tags: test-test
+    deploy.reform/domain: ""
+    deploy.reform/version: 6b5c82cf8fbd6720e41370072c0193f4158e3f6c
+  creationTimestamp: null
+  name: wizard-harris-02
+  namespace: vela-app
+spec:
+  components:
+  - dependsOn:
+    - wizard-harris-02-web-wizard-db-infrastructure
+    name: wizard-harris-02-web-wizard-web-web
+    properties:
+      domain: hiharris
+      path: "4"
+      resource: High
+      secure: true
+    type: web-wizard-web
+  - dependsOn:
+    - wizard-harris-02-web-wizard-db-infrastructure
+    name: wizard-harris-02-web-wizard-api-api
+    properties:
+      domain: wizard-harris-02
+      expose: true
+      path: "5"
+      resource: Medium
+      secure: true
+    type: web-wizard-api
+  - name: wizard-harris-02-web-wizard-db-infrastructure
+    properties:
+      resource: High
+      size: true
+    type: web-wizard-db
+  policies:
+  - name: topology-clusters
+    properties:
+      clusters:
+      - local
+    type: topology
+  workflow:
+    steps:
+    - name: deploy
+      properties:
+        ignoreTerraformComponent: false
+        policies:
+        - topology-clusters
+      type: deploy
+status: {}
