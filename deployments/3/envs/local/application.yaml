@@ -1,0 +1,43 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  annotations:
+    application.deploy.reform/app: app-test
+    application.deploy.reform/cluster: local
+    application.deploy.reform/commitHash: e6111f30e13dee6847cda44cd3b52e8a9c54f9cf
+    application.deploy.reform/deploymentNo: wizard-harris-local_DP1
+    application.deploy.reform/environment: local
+    application.deploy.reform/name: wizard-harris
+    application.deploy.reform/repository: https://github.com/Gglayolun/devhar-not-auto.git
+    application.deploy.reform/repositoryPath: "3"
+    application.deploy.reform/revision: 2023.04.1
+    application.deploy.reform/tags: test-test
+    deploy.reform/domain: ""
+    deploy.reform/version: 6b5c82cf8fbd6720e41370072c0193f4158e3f6c
+  creationTimestamp: null
+  name: wizard-harris
+  namespace: vela-app
+spec:
+  components:
+  - name: wizard-harris-web-wizard-web-web
+    properties:
+      domain: https://google.com
+      path: "1"
+      resource: High
+      secure: false
+    type: web-wizard-web
+  policies:
+  - name: topology-clusters
+    properties:
+      clusters:
+      - local
+    type: topology
+  workflow:
+    steps:
+    - name: deploy
+      properties:
+        ignoreTerraformComponent: false
+        policies:
+        - topology-clusters
+      type: deploy
+status: {}
