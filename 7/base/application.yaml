@@ -1,0 +1,32 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  annotations:
+    application.deploy.reform/app: dev-1
+    application.deploy.reform/tags: test-test
+  creationTimestamp: null
+  name: wizard-harris-02
+  namespace: vela-system
+spec:
+  components:
+  - name: wizard-harris-02-web-wizard-web-web
+    properties:
+      domain: hiharris
+      path: "4"
+      resource: High
+      secure: true
+    type: web-wizard-web
+  - name: wizard-harris-02-web-wizard-api-api
+    properties:
+      domain: wizard-harris-02
+      expose: true
+      path: "5"
+      resource: Medium
+      secure: true
+    type: web-wizard-api
+  - name: wizard-harris-02-web-wizard-db-infrastructure
+    properties:
+      resource: High
+      size: true
+    type: web-wizard-db
+status: {}
