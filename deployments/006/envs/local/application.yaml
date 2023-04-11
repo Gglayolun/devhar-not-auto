@@ -1,0 +1,48 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  annotations:
+    application.deploy.reform/cluster: local
+    application.deploy.reform/commitHash: 42183c895e2d5ca0ef3c93c919b36b40f9abb030
+    application.deploy.reform/deploymentNo: test-ops-456-local_DP1
+    application.deploy.reform/environment: local
+    application.deploy.reform/name: test-ops-456
+    application.deploy.reform/repository: https://github.com/Gglayolun/devhar-not-auto.git
+    application.deploy.reform/repositoryPath: "006"
+    application.deploy.reform/revision: 2023.04.1
+    application.deploy.reform/tags: cadf
+    deploy.reform/domain: ""
+    deploy.reform/version: 6b5c82cf8fbd6720e41370072c0193f4158e3f6c
+  creationTimestamp: null
+  name: test-ops-456
+  namespace: vela-app
+spec:
+  components:
+  - name: test-ops-456-newweb-api
+    properties:
+      addRevisionLabel: false
+      cpu: "0.5"
+      exposeType: ClusterIP
+      image: docker-pull.infinity.reslv.one/nginx
+      imagePullPolicy: IfNotPresent
+      memory: 100Mi
+      ports:
+      - expose: true
+        port: 80
+        protocol: TCP
+    type: webservice
+  policies:
+  - name: topology-clusters
+    properties:
+      clusters:
+      - local
+    type: topology
+  workflow:
+    steps:
+    - name: deploy
+      properties:
+        ignoreTerraformComponent: false
+        policies:
+        - topology-clusters
+      type: deploy
+status: {}
