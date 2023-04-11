@@ -2,7 +2,7 @@ apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
   annotations:
-    application.deploy.reform/tags: cadf
+    application.deploy.reform/tags: ""
   creationTimestamp: null
   name: test-ops-456
   namespace: vela-app
@@ -15,7 +15,7 @@ spec:
       exposeType: ClusterIP
       image: docker-pull.infinity.reslv.one/nginx
       imagePullPolicy: IfNotPresent
-      memory: 100Mi
+      memory: 105Mi
       ports:
       - expose: true
         port: 80
